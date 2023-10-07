@@ -18,10 +18,10 @@ int main(void)
 	}
 	else if (lastdigit == 0)
 	{
-	printf("last digit of %d is %d and lastdigit is zero\n", n, lastdigit);
+	printf("last digit of %d is %d and is 0\n", n, lastdigit);
 	}
 	else if (lastdigit < 6 && lastdigit != 0)
 	{
-	print("last digit of %d is %d and less than 6 and not 0\n", n, lastdigit);
+	print("last digit of %d is %d and is less than 6 and not 0\n", n, lastdigit);
 	return (0);
 }
