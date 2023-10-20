@@ -3,7 +3,8 @@
 
 /**
  * main - check the code
- * @a: an array of integers
+ * print_array- prints the size of array.
+ * @a an array of integers
  * @n: the number of elements to swap
  *
  * Return: nothing.
