@@ -10,7 +10,7 @@
 unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int length = 0;
-	
+
 	if (s == NULL || accept == NULL)
 	{
 	return (0);
