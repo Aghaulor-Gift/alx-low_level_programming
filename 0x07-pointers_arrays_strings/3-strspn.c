@@ -15,7 +15,7 @@ unsigned int _strspn(char *s, char *accept)
 	{
 	return (0);
 	}
-	while (*s != '\0' && s != NULL && accept != NULL)
+	while (*s != '\0' && strchr(accept, *s) != NULL)
 	{
 	++length;
 	++s;
