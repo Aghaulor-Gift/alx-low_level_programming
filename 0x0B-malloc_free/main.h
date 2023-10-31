@@ -1,5 +1,5 @@
-#ifndef _MAIN.H_
-#define _MAIN.H_
+#ifndef MAIN_H
+#define MAIN_H
 
 int _putchar(char c);
 char *create_array(unsigned int size, char c);
