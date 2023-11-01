@@ -1,100 +1,103 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 
-
-/**
- * is_space - Checks if a character is a space.
- * @c: The character to check.
- * Return: 1 if c is a space, 0 otherwise.
- */
-int is_space(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n');
-}
+void util(char **, char *);
+void create_word(char **, char *, int, int, int);
 
 /**
- * **strtow - function that splits a string into words.
- * @str: string to be split
- * Return:  pointer to an array of strings (words)
- */
+* strtow - function that splits a string into words.
+* @str: string to be split
+* Return: pointer to an array of strings
+*/
 
 char **strtow(char *str)
 {
-	int i;
-	int num_words;
-	int in_word;
+	int i, flag, len;
 
-	if (str == NULL || *str == '\0')
+	char **words;
+
+	if (str == NULL || str[0] == '\0' || (str[0] == ' ' && str[1] == '\0'))
 	return (NULL);
 
-	for (i = 0; str[i]; i++)
+	i = flag = len = 0;
+	while (str[i])
 	{
-	if (is_space(str[i]))
-	in_word = 0;
-	else if (!in_word)
+	if (flag == 0 && str[i] != ' ')
+	flag = 1;
+	if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
 	{
-	in_word = 1;
-	num_words++;
+	flag = 0;
+	len++;
 	}
+	i++;
 	}
-}
-/**
- * **words - number of strings.
- * @str: string to be split
- * @num_words: number of words
- * Return:  pointer to an array of strings (words)
- */
-char **words = malloc((num_words + 1) * sizeof(char *))
-{
-	int in_word;
-	int i;
-	int word_index;
 
+	len += flag == 1 ? 1 : 0;
+	if (len == 0)
+	return (NULL);
+
+	words = (char **)malloc(sizeof(char *) * (len + 1));
 	if (words == NULL)
-	{
-	perror("malloc");
-	exit(EXIT_FAILURE);
-	}
+	return (NULL);
 
-	word_index = 0;
-
-	for (i = 0; str[i]; i++)
-	{
-	if (is_space(str[i]))
-	{
-	in_word = 0;
-	}
-	else if (!in_word)
-	{
-	in_word = 1;
-	words[word_index++] = strdup(str + i);
-	}
-	}
-	words[word_index] = NULL;
+	util(words, str);
+	words[len] = NULL;
 	return (words);
 }
 
 /**
- * **strtow - function that splits a string into words.
- * @str: string to be split
- * @words: number of character
- * Return:  pointer to an array of strings (words)
- */
-int main(void)
-{
-	int i;
-	char str[] = "  Hello  World  ";
-	char **words = strtow(str);
+* util - function for fetching words into an array
+* @words: the strings array
+* @str: the string
+*/
 
-	if (words != NULL)
+void util(char **words, char *str)
+{
+	int i, j, start, flag;
+
+	i = j = flag = 0;
+	while (str[i])
 	{
-	for (i = 0; words[i] != NULL; i++)
+	if (flag == 0 && str[i] != ' ')
 	{
-	printf("%s\n", words[i]);
-	free(words[i]);
+	start = i;
+	flag = 1;
 	}
-	free(words);
+
+	if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
+	{
+	create_word(words, str, start, i, j);
+	j++;
+	flag = 0;
 	}
+
+	i++;
+	}
+
+	if (flag == 1)
+	create_word(words, str, start, i, j);
+	}
+
+/**
+* create_word - creates a word and insert it into the array
+* @words: the array of strings
+* @str: the string
+* @start: the starting index of the word
+* @end: the stopping index of the word
+* @index: the index of the array to insert the word
+*/
+
+void create_word(char **words, char *str, int start, int end, int index)
+{
+	int i, j;
+
+	i = end - start;
+	words[index] = (char *)malloc(sizeof(char) * (i + 1));
+
+	for (j = 0; start < end; start++, j++)
+	words[index][j] = str[start];
+	words[index][j] = '\0';
 }
+
