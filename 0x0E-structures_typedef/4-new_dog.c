@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stddef.h>
 
 /**
  * new_dog - Function that creates a new dog.
@@ -15,7 +14,7 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *new_dog;
-	
+
 	if (name == NULL || owner == NULL)
 	return (NULL);
 
