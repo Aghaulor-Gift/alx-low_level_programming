@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stddef.h>
 /**
  * new_dog - Function that creates a new dog.
  * @name: Name of the dog.
