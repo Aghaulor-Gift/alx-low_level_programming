@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "function_pointers.h"
 #include <string.h>
-
+#include <stddef.h>
 /**
  * print_name- function that prints a name.
  * @name: Name of the person
