@@ -1,10 +1,5 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
+#include <fcntl.h>
 /**
  * read_textfile - function that reads a text file
  *                 and prints it to the POSIX standard output.
@@ -16,45 +11,24 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *fp;
+	int fd;
+	ssize_t rd, wr;
 	char *buffer;
-	ssize_t rd;
-	ssize_t wr;
-	size_t total;
 
 	if (filename == NULL)
 	return (0);
 
-	fp = fopen(filename, "r");
-	if (fp == NULL)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 	return (0);
-	total = 0;
 
-	buffer = (char *)malloc(1024);
+	buffer = malloc(sizeof(char) * (letters));
 	if (buffer == NULL)
-	{
-	fclose(fp);
 	return (0);
-	}
-	rd = read(rd, buffer, sizeof(buffer));
-	rd = fread(buffer, 1, 1024, fp);
+
+	rd = read(fd, buffer, letters);
 	wr = write(STDOUT_FILENO, buffer, rd);
-
-	while (rd > 0)
-	{
-	if (wr != rd)
-	{
-	close(rd);
-	return (0);
-	}
-
-	total += rd;
-
-	if (total >= letters)
-	break;
-	}
-
+	close(fd);
 	free(buffer);
-	close(rd);
-	return (total);
+	return (wr);
 }
