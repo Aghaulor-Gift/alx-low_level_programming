@@ -14,6 +14,11 @@ Write a function that returns the number of elements in a linked list_t list.
 
 Prototype: size_t list_len(const list_t *h);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9f773b5a0c9ce86a45d65538455c10f2c82ccb85
 2. Add node
 Write a function that adds a new node at the beginning of a list_t list.
 
@@ -42,7 +47,5 @@ You are allowed to use the printf function
 
 6. Real programmers can write assembly code in any language
 Write a 64-bit program in assembly that prints Hello, Holberton, followed by a new line.
-
 You are only allowed to use the printf function
 You are not allowed to use interrupts
-Your program will be compiled using nasm and gcc:
