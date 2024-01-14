@@ -10,6 +10,10 @@
 #include <sys/types.h>
 #include <fcntl.h>
 
+#define BUFFER_SIZE 1024
+
+void print_error_and_exit(int exit_code, const char *message, const char *file_name);
+void copy_file(const char *file_from, const char *file_to);
 
 int _putchar(char c);
 ssize_t read_textfile(const char *filename, size_t letters);
