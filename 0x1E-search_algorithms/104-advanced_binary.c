@@ -14,6 +14,9 @@ int advanced_binary_recursive(int *array, size_t left, size_t right, int value)
 {
 	size_t i;
 
+	if (array == NULL)
+		return (-1);
+
 	if (left <= right)
 	{
 		size_t mid = left + (right - left) / 2;
