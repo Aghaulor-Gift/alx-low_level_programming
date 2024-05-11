@@ -48,5 +48,10 @@ listint_t *jump_list(listint_t *list, size_t size, int value);
 skiplist_t *linear_skip(skiplist_t *list, int value);
 int binarySearch(int *array, size_t left, size_t right, int value);
 int advanced_binary_recursive(int *array, size_t left, size_t right, int value);
-
+listint_t *create_list(int *array, size_t size);
+void print_list(const listint_t *list);
+void free_list(listint_t *list);
+skiplist_t *create_skiplist(int *array, size_t size);
+void print_skiplist(const skiplist_t *list);
+void free_skiplist(skiplist_t *list);
 #endif
